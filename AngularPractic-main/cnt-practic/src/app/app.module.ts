@@ -5,12 +5,16 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PagesComponent } from './pages/pages.component';
 import { HeaderComponent } from './@theme/components/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
+import { SidebarComponent } from './pages/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PagesComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
