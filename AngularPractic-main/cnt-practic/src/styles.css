@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+
+*{
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    border: none;
+    text-indent: 1px;
+    box-sizing: border-box; 
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style-type:none;
+}
+
+ol{
+    list-style-type: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --color-indigo-500: rgb(63, 81, 181);
+    --block-background: white;
+    --block-border-color: rgb(235, 235, 235);
+    --focus-color: rgb(63,81,181);
+    --block-child-background: 3gb(236,236,236)
+    --block-child-border-color: #1c2430;
+  }
+
+  :root {
+    --color-indigo-500: rgb(63, 81, 181);
+    --block-background: white;
+    --block-border-color: rgb(235, 235, 235);
+    --focus-color: rgb(63,81,181);
+    --block-child-background: 3gb(236,236,236)
+    --block-child-border-color: #1c2430;
+  }
