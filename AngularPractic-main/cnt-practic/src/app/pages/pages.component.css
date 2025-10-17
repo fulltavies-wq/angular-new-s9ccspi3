@@ -2,19 +2,19 @@
     position: relative;
 
   }
-  
+
   .layout {
     display: flex;
     flex-direction: row;
     width:100vw;
     height:85vh;
   }
-  
+
   main {
     position: relative;
     flex-grow: 1;
     padding: 1rem;
-    background-color: #EBEBEB;
+    /* background-color: #EBEBEB; */
   }
 
   .main-sidebar{
