@@ -10,6 +10,9 @@ import { FooterComponent } from './@theme/components/footer/footer.component';
 import { MenuParentsComponent } from './@theme/components/menu/components/menu-parents/menu-parents.component';
 import { MenuChildrensComponent } from './@theme/components/menu/components/menu-childrens/menu-childrens.component';
 import { ThemeSwitcherComponent } from './@theme/components/header/theme-switcher/theme-switcher.component';
+import { MainPageComponent } from './pages/sections/main-page/main-page.component';
+// import { AdminPageComponent } from './modules/administration/pages/admin-page/admin-page.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { ThemeSwitcherComponent } from './@theme/components/header/theme-switche
     FooterComponent,
     MenuParentsComponent,
     MenuChildrensComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    MainPageComponent,
+    // AdminPageComponent,
+
   ],
   imports: [
     BrowserModule,

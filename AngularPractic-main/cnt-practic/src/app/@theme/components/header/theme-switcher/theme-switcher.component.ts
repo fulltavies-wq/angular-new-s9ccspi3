@@ -8,19 +8,38 @@ import { ThemeSwitcherService } from './services/theme-switcher.service';
 })
 export class ThemeSwitcherComponent implements OnInit {
   currentTheme: string = this.themeService.currentTheme || 'light-theme';
+  prevTheme : string = '';
+  constructor(private themeService: ThemeSwitcherService) {
 
-  constructor(private themeService: ThemeSwitcherService) {}
+    const darkModeMediaQuery: MediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+
+const handleColorSchemeChange = (event: MediaQueryListEvent): void => {
+    if (event.matches) {
+
+      this.themeService.setTheme('dark-theme');
+    } else {
+
+      this.themeService.setTheme('light-theme');
+    }
+};
+
+darkModeMediaQuery.addEventListener('change', handleColorSchemeChange);
+
+// Первоначальная проверка
+handleColorSchemeChange(new MediaQueryListEvent('change', { matches: darkModeMediaQuery.matches }));
+  }
 
   ngOnInit() {
     this.themeService.setTheme(this.currentTheme);
   }
 
   toggleTheme() {
+    document.querySelectorAll('.theme-switcher__button')[0].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FF7C00"><path d="M480-120q-117 0-198.5-81.5T200-400q0-94 55.5-168.5T401-669q-20-5-39-14.5T328-708q-33-33-42.5-78.5T281-879q47-5 92.5 4.5T452-832q23 23 33.5 52t13.5 61q13-31 31.5-58.5T572-828q11-11 28-11t28 11q11 11 11 28t-11 28q-22 22-39 48.5T564-667q88 28 142 101.5T760-400q0 117-81.5 198.5T480-120Zm0-80q83 0 141.5-58.5T680-400q0-83-58.5-141.5T480-600q-83 0-141.5 58.5T280-400q0 83 58.5 141.5T480-200Zm0-200Z"/></svg>`
     this.currentTheme = this.currentTheme === 'light-theme' ? 'dark-theme' : 'light-theme';
     this.themeService.setTheme(this.currentTheme);
 
     if (this.currentTheme === 'dark-theme'){
-      document.querySelector('.theme-switcher__button')!.innerHTML = `
+      document.querySelectorAll('.theme-switcher__button')[1]!.innerHTML = `
       <ng-template #darkTheme>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +55,7 @@ export class ThemeSwitcherComponent implements OnInit {
       </ng-template>`
     }
     else{
-      document.querySelector('.theme-switcher__button')!.innerHTML =
+      document.querySelectorAll('.theme-switcher__button')[1]!.innerHTML =
       `      <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
@@ -50,5 +69,29 @@ export class ThemeSwitcherComponent implements OnInit {
       </svg>
       `
     }
+  }
+
+  rizhiTheme(){
+
+    if (this.currentTheme != 'rizhi-theme'){
+      this.prevTheme = this.currentTheme
+      this.currentTheme = 'rizhi-theme'
+      this.themeService.setTheme(this.currentTheme)
+      
+      if (this.prevTheme === 'light-theme'){
+        document.querySelectorAll('.theme-switcher__button')[0].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#EBEBEB"><path d="M480-120q-117 0-198.5-81.5T200-400q0-94 55.5-168.5T401-669q-20-5-39-14.5T328-708q-33-33-42.5-78.5T281-879q47-5 92.5 4.5T452-832q23 23 33.5 52t13.5 61q13-31 31.5-58.5T572-828q11-11 28-11t28 11q11 11 11 28t-11 28q-22 22-39 48.5T564-667q88 28 142 101.5T760-400q0 117-81.5 198.5T480-120Zm0-80q83 0 141.5-58.5T680-400q0-83-58.5-141.5T480-600q-83 0-141.5 58.5T280-400q0 83 58.5 141.5T480-200Zm0-200Z"/></svg>`
+      }
+      else {
+        document.querySelectorAll('.theme-switcher__button')[0].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#0D1017"><path d="M480-120q-117 0-198.5-81.5T200-400q0-94 55.5-168.5T401-669q-20-5-39-14.5T328-708q-33-33-42.5-78.5T281-879q47-5 92.5 4.5T452-832q23 23 33.5 52t13.5 61q13-31 31.5-58.5T572-828q11-11 28-11t28 11q11 11 11 28t-11 28q-22 22-39 48.5T564-667q88 28 142 101.5T760-400q0 117-81.5 198.5T480-120Zm0-80q83 0 141.5-58.5T680-400q0-83-58.5-141.5T480-600q-83 0-141.5 58.5T280-400q0 83 58.5 141.5T480-200Zm0-200Z"/></svg>`
+      }
+    }
+    else{
+      document.querySelectorAll('.theme-switcher__button')[0].innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FF7C00"><path d="M480-120q-117 0-198.5-81.5T200-400q0-94 55.5-168.5T401-669q-20-5-39-14.5T328-708q-33-33-42.5-78.5T281-879q47-5 92.5 4.5T452-832q23 23 33.5 52t13.5 61q13-31 31.5-58.5T572-828q11-11 28-11t28 11q11 11 11 28t-11 28q-22 22-39 48.5T564-667q88 28 142 101.5T760-400q0 117-81.5 198.5T480-120Zm0-80q83 0 141.5-58.5T680-400q0-83-58.5-141.5T480-600q-83 0-141.5 58.5T280-400q0 83 58.5 141.5T480-200Zm0-200Z"/></svg>`
+      document.body.className = this.prevTheme;
+      this.currentTheme = this.prevTheme
+      this.prevTheme = 'rizhi-theme'
+      
+    }
+
   }
 }
