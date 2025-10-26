@@ -1,0 +1,18 @@
+<div class="users-page__header">
+  <p>Пользователи</p>
+</div>
+<div class="users-page__content">
+  <div class="users-page__table-wrapper">
+    <app-table
+      [columnHeaders]="['Id', 'Логин', 'Пароль', 'Enabled', 'Имя', 'Фамилия', 'Отчество', 'Дата регистрации', 'Дата рождения']"
+      [data]="users">
+    </app-table>
+  </div>
+
+  <aside class="users-page__aside">
+    <header>Добавить пользователя</header>
+    <main>
+      <app-add-user-form />
+    </main>
+  </aside>
+</div>
