@@ -152,3 +152,133 @@ function updatePromotionTimer() {
 document.addEventListener('DOMContentLoaded', function() {
     updatePromotionTimer();
 });
+
+// ... существующий код корзины ...
+
+// 4. ФИЛЬТРАЦИЯ МЕНЮ
+const filterButtons = document.querySelectorAll('.filter-btn');
+const products = document.querySelectorAll('.product');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Убираем активный класс у всех кнопок
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Добавляем активный класс нажатой кнопке
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        // Показываем/скрываем товары
+        products.forEach(product => {
+            if (filter === 'all' || product.getAttribute('data-category') === filter) {
+                product.style.display = 'block';
+                setTimeout(() => {
+                    product.style.opacity = '1';
+                    product.style.transform = 'translateY(0)';
+                }, 10);
+            } else {
+                product.style.opacity = '0';
+                product.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    product.style.display = 'none';
+                }, 300);
+            }
+        });
+    });
+});
+
+// 5. КНОПКА "НАВЕРХ"
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollTopBtn.style.display = 'block';
+    } else {
+        scrollTopBtn.style.display = 'none';
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// 6. АНИМАЦИЯ ПРИ СКРОЛЛЕ
+const observerOptions = {
+    threshold: 0.1
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Наблюдаем за секциями
+document.querySelectorAll('section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(30px)';
+    section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(section);
+});
+
+// 7. СОХРАНЕНИЕ КОРЗИНЫ В LOCALSTORAGE
+function saveCartToLocalStorage() {
+    localStorage.setItem('cookingCart', JSON.stringify(cart));
+    localStorage.setItem('cookingTotalPrice', totalPrice.toString());
+}
+
+function loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cookingCart');
+    const savedTotalPrice = localStorage.getItem('cookingTotalPrice');
+    
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        totalPrice = parseInt(savedTotalPrice) || 0;
+        updateCartDisplay();
+    }
+}
+
+// Обновляем функцию добавления в корзину
+orderButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const name = this.getAttribute('data-name');
+        const price = parseInt(this.getAttribute('data-price'));
+        
+        cart.push({ name, price });
+        totalPrice += price;
+        
+        updateCartDisplay();
+        saveCartToLocalStorage(); // Сохраняем
+        
+        // Анимация
+        this.textContent = 'Добавлено!';
+        this.style.backgroundColor = '#2ecc71';
+        setTimeout(() => {
+            this.textContent = 'Добавить в заказ';
+            this.style.backgroundColor = '';
+        }, 1500);
+    });
+});
+
+// Загружаем корзину при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    updatePromotionTimer();
+    loadCartFromLocalStorage();
+    
+    // Анимация для товаров
+    products.forEach(product => {
+        product.style.opacity = '0';
+        product.style.transform = 'translateY(20px)';
+        product.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        setTimeout(() => {
+            product.style.opacity = '1';
+            product.style.transform = 'translateY(0)';
+        }, 100);
+    });
+});
