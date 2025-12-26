@@ -9,6 +9,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Kablammo:MORF@26&family=Playwrite+GB+S&family=Press+Start+2P&family=Rowdies:wght@300;400;700&family=Rubik+Wet+Paint&family=Sixtyfour+Convergence:SCAN,XELA@-1,-46&display=swap" rel="stylesheet">
 </head>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <img id="modalImage" src="" alt="">
+        <h2 id="modalTitle"></h2>
+        <div class="modal-rating" id="modalRating"></div>
+        <p id="modalDescription"></p>
+        <p id="modalPrice"></p>
+        <button class="order-btn" id="modalOrderBtn">Добавить в заказ</button>
+    </div>
+</div>
+<button class="scroll-to-top" id="scrollTopBtn">↑</button>
+
+<script src="script.js"></script>
+</body>
 <body>
     <header>
         <h1>Кафе Cooking</h1>
@@ -62,12 +78,27 @@
     
                         </div>
                     </article>
+
+                    <div class="promotion-banner">
+                        <h3>🔥 Специальное предложение! 🔥</h3>
+                        <p>При заказе от 1500 руб. — бесплатная доставка!</p>
+                        <div id="promo-timer">До конца акции: --:--:--</div>
+                    </div>
+
+                    
+    </section>
     </section>
 
     <section id="menu">
         <h2>Наше меню</h2>
         <p>Мы предлагаем широкий выбор блюд, от закусок до десертов, а также обширный выбор напитков.</p>
-        
+        <div class="menu-filters">
+    <button class="filter-btn active" data-filter="all">Все блюда</button>
+    <button class="filter-btn" data-filter="zakuski">Закуски</button>
+    <button class="filter-btn" data-filter="drinks">Напитки</button>
+    <button class="filter-btn" data-filter="soups">Супы</button>
+    <button class="filter-btn" data-filter="main">Основные</button>
+</div>
         <div class="tipamenu">
             <h3>Закуски</h3>
         </div>
@@ -238,9 +269,6 @@
     </section>
 
     <footer id="contact">
-       
-    </footer>
-    <footer id="contact">
         <h2>Контакты</h2>
         <p>Вы можете связаться с нами по телефону: +7 (123) 456-7890</p>
         <p>Адрес: ул. Вкусная, 10, Москва</p>
@@ -252,7 +280,9 @@
 </div>
     </footer>
 
-    
+    <script src="script.js"></script>
+</body>
+
 </body>
 </html>
 

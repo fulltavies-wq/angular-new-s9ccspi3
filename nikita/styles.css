@@ -422,3 +422,366 @@ footer p {
         font-size: 2rem;
     }
 }
+
+/* ========== 7. Стили для корзины ========== */
+#cart {
+    background: #f8f9fa;
+    border-radius: 15px;
+    margin: 3rem auto;
+    padding: 2rem;
+    max-width: 1000px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+#cart-items {
+    min-height: 150px;
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+
+.empty-cart-msg {
+    color: #7f8c8d;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.remove-item {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.remove-item:hover {
+    background: #c0392b;
+}
+
+.cart-summary {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    align-self: start;
+}
+
+.cart-summary p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+#clear-cart, #checkout, .order-btn {
+    display: block;
+    width: 100%;
+    padding: 0.9rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.order-btn {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    margin-top: 1rem;
+}
+
+.order-btn:hover {
+    background: linear-gradient(to right, #2980b9, #1c6ea4);
+    transform: scale(1.03);
+}
+
+#clear-cart {
+    background: #ecf0f1;
+    color: #7f8c8d;
+}
+
+#clear-cart:hover {
+    background: #d5dbdb;
+}
+
+#checkout {
+    background: linear-gradient(to right, #2ecc71, #27ae60);
+    color: white;
+}
+
+#checkout:hover {
+    background: linear-gradient(to right, #27ae60, #219653);
+}
+
+@media (max-width: 768px) {
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========== ФИЛЬТРЫ МЕНЮ ========== */
+.menu-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 25px;
+    background: #ecf0f1;
+    border: 2px solid #bdc3c7;
+    border-radius: 30px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.filter-btn:hover {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+    transform: translateY(-3px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(to right, #e67e22, #d35400);
+    color: white;
+    border-color: #d35400;
+    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+}
+
+/* ========== РЕЙТИНГ ========== */
+.rating {
+    color: #f1c40f;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.star {
+    display: inline-block;
+    margin: 0 2px;
+}
+
+/* ========== КНОПКА ВВЕРХ ========== */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to right, #e67e22, #d35400);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to right, #d35400, #c0392b);
+}
+
+/* ========== АКЦИЯ ========== */
+.promotion-banner {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 800px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+}
+
+#promo-timer {
+    font-weight: bold;
+    font-size: 1.3rem;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* ========== МОДАЛЬНОЕ ОКНО ========== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #7f8c8d;
+}
+
+.close-modal:hover {
+    color: #e74c3c;
+}
+
+#modalImage {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.modal-rating {
+    color: #f1c40f;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+/* ========== УЛУЧШЕННАЯ АДАПТИВНОСТЬ ========== */
+@media (max-width: 1200px) {
+    .product-list {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        gap: 0.5rem;
+    }
+    
+    nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .product-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .product h3 {
+        font-size: 1.1rem;
+    }
+    
+    .product p {
+        font-size: 1rem;
+    }
+    
+    .order-btn {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+    
+    .menu-filters {
+        gap: 5px;
+    }
+    
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter-btn {
+        width: 80%;
+        margin-bottom: 5px;
+    }
+    
+    .scroll-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
