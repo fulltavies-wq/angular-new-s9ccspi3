@@ -1,4 +1,6 @@
-// 1. Функционал корзины
+console.log('✅ Script.js загружен! Корзина готова к работе!');
+
+// ========== 1. ФУНКЦИОНАЛ КОРЗИНЫ ==========
 let cart = [];
 let totalPrice = 0;
 
@@ -15,6 +17,8 @@ orderButtons.forEach(button => {
     button.addEventListener('click', function() {
         const name = this.getAttribute('data-name');
         const price = parseInt(this.getAttribute('data-price'));
+        
+        console.log('✅ Добавляем в корзину:', name, price);
         
         // Добавляем товар в массив корзины
         cart.push({ name, price });
@@ -63,12 +67,19 @@ function updateCartDisplay() {
                 totalPrice -= cart[index].price;
                 cart.splice(index, 1);
                 updateCartDisplay();
+                saveCartToLocalStorage();
             });
         });
     }
     
     // Обновляем итоговую сумму
     totalPriceElement.textContent = totalPrice;
+    
+    // Сохраняем в LocalStorage
+    saveCartToLocalStorage();
+    
+    // Проверяем бесплатную доставку
+    checkFreeDelivery();
 }
 
 // Очистка корзины
@@ -77,6 +88,7 @@ clearCartBtn.addEventListener('click', () => {
         cart = [];
         totalPrice = 0;
         updateCartDisplay();
+        saveCartToLocalStorage();
     }
 });
 
@@ -87,24 +99,193 @@ checkoutBtn.addEventListener('click', () => {
         return;
     }
     
-    let orderMessage = 'Ваш заказ:\n';
+    let orderMessage = '🍽️ ВАШ ЗАКАЗ 🍽️\n\n';
     cart.forEach(item => {
-        orderMessage += `- ${item.name}: ${item.price} руб.\n`;
+        orderMessage += `• ${item.name}: ${item.price} руб.\n`;
     });
-    orderMessage += `\nИтого: ${totalPrice} руб.\n\nСпасибо за заказ! С вами свяжутся для подтверждения.`;
+    orderMessage += `\n💰 ИТОГО: ${totalPrice} руб.\n\n`;
+    
+    if (totalPrice >= 1500) {
+        orderMessage += '🎉 Вы получили БЕСПЛАТНУЮ ДОСТАВКУ!\n';
+    } else {
+        orderMessage += `📦 До бесплатной доставки осталось: ${1500 - totalPrice} руб.\n`;
+    }
+    
+    orderMessage += `📞 С вами свяжутся для подтверждения заказа.\n`;
+    orderMessage += `⏱️ Время доставки: 45-60 минут`;
     
     alert(orderMessage);
-    
-    // Здесь можно отправить данные на сервер
-    // fetch('/api/order', { method: 'POST', body: JSON.stringify(cart) })
     
     // Очищаем корзину после оформления
     cart = [];
     totalPrice = 0;
     updateCartDisplay();
+    saveCartToLocalStorage();
 });
 
-// 2. Плавная прокрутка к якорям
+// ========== 2. ТАЙМЕР АКЦИИ ==========
+function updatePromotionTimer() {
+    const timerElement = document.getElementById('promo-timer');
+    if(!timerElement) return;
+    
+    // Акция на 3 дня
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 3);
+    endDate.setHours(23, 59, 59, 999);
+    
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = endDate - now;
+        
+        if(distance < 0) {
+            timerElement.innerHTML = "⏰ Акция завершена!";
+            timerElement.style.color = "#e74c3c";
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        let timeString = "";
+        if (days > 0) {
+            timeString += `${days} дн. `;
+        }
+        timeString += `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        timerElement.innerHTML = `⏳ До конца акции: <strong>${timeString}</strong>`;
+        
+        if (hours < 1) {
+            timerElement.style.color = "#e74c3c";
+        } else if (hours < 3) {
+            timerElement.style.color = "#f39c12";
+        } else {
+            timerElement.style.color = "#ffffff";
+        }
+    }
+    
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
+
+// ========== 3. LOCALSTORAGE ==========
+function saveCartToLocalStorage() {
+    localStorage.setItem('cookingCart', JSON.stringify(cart));
+    localStorage.setItem('cookingTotalPrice', totalPrice.toString());
+}
+
+function loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cookingCart');
+    const savedTotalPrice = localStorage.getItem('cookingTotalPrice');
+    
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        totalPrice = parseInt(savedTotalPrice) || 0;
+        updateCartDisplay();
+        console.log('✅ Корзина загружена из LocalStorage:', cart);
+    }
+}
+
+// ========== 4. БЕСПЛАТНАЯ ДОСТАВКА ==========
+function checkFreeDelivery() {
+    // Убираем старые сообщения
+    const oldMsg = document.querySelector('.delivery-message');
+    if (oldMsg) oldMsg.remove();
+    
+    if (totalPrice >= 1500 && totalPrice > 0) {
+        const deliveryMsg = document.createElement('div');
+        deliveryMsg.className = 'delivery-message';
+        deliveryMsg.innerHTML = '🎉 Поздравляем! Вы получили БЕСПЛАТНУЮ доставку!';
+        deliveryMsg.style.cssText = `
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+        `;
+        
+        if (totalPriceElement.parentNode) {
+            totalPriceElement.parentNode.appendChild(deliveryMsg);
+        }
+    } else if (totalPrice > 0) {
+        const remaining = 1500 - totalPrice;
+        const deliveryMsg = document.createElement('div');
+        deliveryMsg.className = 'delivery-message';
+        deliveryMsg.innerHTML = `📦 Добавьте еще ${remaining} руб. для БЕСПЛАТНОЙ доставки!`;
+        deliveryMsg.style.cssText = `
+            background: #f39c12;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        `;
+        
+        if (totalPriceElement.parentNode) {
+            totalPriceElement.parentNode.appendChild(deliveryMsg);
+        }
+    }
+}
+
+// ========== 5. ФИЛЬТРЫ МЕНЮ ==========
+function setupMenuFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const products = document.querySelectorAll('.product');
+    
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                products.forEach(product => {
+                    const category = product.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        product.style.display = 'block';
+                        setTimeout(() => {
+                            product.style.opacity = '1';
+                            product.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        product.style.opacity = '0';
+                        product.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            product.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    }
+}
+
+// ========== 6. КНОПКА "НАВЕРХ" ==========
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.style.display = 'block';
+        } else {
+            scrollTopBtn.style.display = 'none';
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// ========== 7. ПЛАВНАЯ ПРОКРУТКА ==========
 document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -121,164 +302,28 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 3. Таймер акции (пример)
-function updatePromotionTimer() {
-    const timerElement = document.getElementById('promo-timer');
-    if(!timerElement) return;
-    
-    // Установите дату окончания акции
-    const endDate = new Date();
-    endDate.setDate(endDate.getDate() + 2); // Акция на 2 дня
-    
-    const timer = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = endDate - now;
-        
-        if(distance < 0) {
-            clearInterval(timer);
-            timerElement.innerHTML = "Акция завершена!";
-            return;
-        }
-        
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-        timerElement.innerHTML = `До конца акции: ${hours}ч ${minutes}м ${seconds}с`;
-    }, 1000);
-}
-
-// Вызов функций при загрузке
+// ========== 8. ЗАГРУЗКА СТРАНИЦЫ ==========
 document.addEventListener('DOMContentLoaded', function() {
-    updatePromotionTimer();
-});
-
-// ... существующий код корзины ...
-
-// 4. ФИЛЬТРАЦИЯ МЕНЮ
-const filterButtons = document.querySelectorAll('.filter-btn');
-const products = document.querySelectorAll('.product');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Убираем активный класс у всех кнопок
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Добавляем активный класс нажатой кнопке
-        button.classList.add('active');
-        
-        const filter = button.getAttribute('data-filter');
-        
-        // Показываем/скрываем товары
-        products.forEach(product => {
-            if (filter === 'all' || product.getAttribute('data-category') === filter) {
-                product.style.display = 'block';
-                setTimeout(() => {
-                    product.style.opacity = '1';
-                    product.style.transform = 'translateY(0)';
-                }, 10);
-            } else {
-                product.style.opacity = '0';
-                product.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    product.style.display = 'none';
-                }, 300);
-            }
-        });
-    });
-});
-
-// 5. КНОПКА "НАВЕРХ"
-const scrollTopBtn = document.getElementById('scrollTopBtn');
-
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.style.display = 'block';
-    } else {
-        scrollTopBtn.style.display = 'none';
-    }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
-
-// 6. АНИМАЦИЯ ПРИ СКРОЛЛЕ
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Наблюдаем за секциями
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(section);
-});
-
-// 7. СОХРАНЕНИЕ КОРЗИНЫ В LOCALSTORAGE
-function saveCartToLocalStorage() {
-    localStorage.setItem('cookingCart', JSON.stringify(cart));
-    localStorage.setItem('cookingTotalPrice', totalPrice.toString());
-}
-
-function loadCartFromLocalStorage() {
-    const savedCart = localStorage.getItem('cookingCart');
-    const savedTotalPrice = localStorage.getItem('cookingTotalPrice');
+    console.log('🚀 Страница загружена!');
     
-    if (savedCart) {
-        cart = JSON.parse(savedCart);
-        totalPrice = parseInt(savedTotalPrice) || 0;
-        updateCartDisplay();
-    }
-}
-
-// Обновляем функцию добавления в корзину
-orderButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        const name = this.getAttribute('data-name');
-        const price = parseInt(this.getAttribute('data-price'));
-        
-        cart.push({ name, price });
-        totalPrice += price;
-        
-        updateCartDisplay();
-        saveCartToLocalStorage(); // Сохраняем
-        
-        // Анимация
-        this.textContent = 'Добавлено!';
-        this.style.backgroundColor = '#2ecc71';
-        setTimeout(() => {
-            this.textContent = 'Добавить в заказ';
-            this.style.backgroundColor = '';
-        }, 1500);
-    });
-});
-
-// Загружаем корзину при загрузке страницы
-document.addEventListener('DOMContentLoaded', function() {
-    updatePromotionTimer();
+    // Загружаем корзину
     loadCartFromLocalStorage();
     
-    // Анимация для товаров
-    products.forEach(product => {
+    // Запускаем таймер
+    updatePromotionTimer();
+    
+    // Настраиваем фильтры
+    setupMenuFilters();
+    
+    // Анимация товаров
+    const products = document.querySelectorAll('.product');
+    products.forEach((product, index) => {
         product.style.opacity = '0';
         product.style.transform = 'translateY(20px)';
         product.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         setTimeout(() => {
             product.style.opacity = '1';
             product.style.transform = 'translateY(0)';
-        }, 100);
+        }, index * 50);
     });
 });
