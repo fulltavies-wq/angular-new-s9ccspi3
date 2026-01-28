@@ -354,3 +354,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 50);
     });
 });
+
+// ========== БЛЮДО ДНЯ (автоматическая смена) ==========
+function updateDaySpecial() {
+    const dishes = [
+        { name: "Салат 'Цезарь' (350гр.)", price: 379, discount: 15 },
+        { name: "Утиные ножки «Конфи»", price: 899, discount: 10 },
+        { name: "Борщ с говядиной", price: 319, discount: 20 },
+        { name: "Банановые панкейки с кленовым сиропом", price: 419, discount: 15 },
+        { name: "Суп «Харчо» с курицей и рисом", price: 319, discount: 25 }
+    ];
+    
+    // Берем блюдо по дню недели
+    const today = new Date().getDay();
+    const specialDish = dishes[today % dishes.length];
+    
+    const dayDishElement = document.getElementById('day-dish');
+    if (dayDishElement) {
+        dayDishElement.textContent = specialDish.name;
+        
+        // Можно добавить автоматическое применение скидки
+        console.log(`🍽️ Блюдо дня: ${specialDish.name} (-${specialDish.discount}%)`);
+    }
+}
