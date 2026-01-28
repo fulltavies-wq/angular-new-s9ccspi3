@@ -231,7 +231,7 @@ function checkFreeDelivery() {
     }
 }
 
-// ========== 5. ФИЛЬТРЫ МЕНЮ ==========
+// ========== 5. ФИЛЬТРЫ МЕНУ ==========
 function setupMenuFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const products = document.querySelectorAll('.product');
@@ -302,18 +302,45 @@ document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ========== 8. ЗАГРУЗКА СТРАНИЦЫ ==========
+// ========== 8. СЧЕТЧИК ОНЛАЙН ==========
+function updateOnlineCounter() {
+    const onlineCount = document.getElementById('online-count');
+    if (onlineCount) {
+        // Начальное случайное число от 15 до 45
+        let currentCount = Math.floor(Math.random() * 30) + 15;
+        onlineCount.textContent = currentCount;
+        
+        // Обновляем каждые 30 секунд
+        setInterval(() => {
+            // Случайное изменение от -2 до +2
+            const change = Math.floor(Math.random() * 5) - 2;
+            currentCount = Math.max(10, currentCount + change); // Не меньше 10
+            onlineCount.textContent = currentCount;
+            
+            // Анимация при изменении
+            onlineCount.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                onlineCount.style.transform = 'scale(1)';
+            }, 300);
+        }, 30000); // 30 секунд
+    }
+}
+
+// ========== 9. ЕДИНАЯ ИНИЦИАЛИЗАЦИЯ ==========
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Страница загружена!');
     
     // Загружаем корзину
     loadCartFromLocalStorage();
     
-    // Запускаем таймер
+    // Запускаем таймер акции
     updatePromotionTimer();
     
-    // Настраиваем фильтры
+    // Настраиваем фильтры меню
     setupMenuFilters();
+    
+    // Запускаем счетчик онлайн
+    updateOnlineCounter();
     
     // Анимация товаров
     const products = document.querySelectorAll('.product');
