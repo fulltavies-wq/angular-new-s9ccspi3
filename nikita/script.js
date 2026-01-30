@@ -377,3 +377,91 @@ function updateDaySpecial() {
         console.log(`🍽️ Блюдо дня: ${specialDish.name} (-${specialDish.discount}%)`);
     }
 }
+
+// ========== ФИЛЬТРЫ МЕНЮ ==========
+function setupMenuFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const products = document.querySelectorAll('.product');
+    
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                products.forEach(product => {
+                    const category = product.getAttribute('data-category');
+                    
+                    // Особый случай для фильтра "popular"
+                    if (filter === 'popular') {
+                        if (category.includes('popular')) {
+                            product.style.display = 'block';
+                            setTimeout(() => {
+                                product.style.opacity = '1';
+                                product.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            product.style.opacity = '0';
+                            product.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                product.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                    // Обычные фильтры
+                    else if (filter === 'all' || category.includes(filter)) {
+                        product.style.display = 'block';
+                        setTimeout(() => {
+                            product.style.opacity = '1';
+                            product.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        product.style.opacity = '0';
+                        product.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            product.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    }
+}
+
+// Функция показа уведомления
+function showNotification(message) {
+    const notification = document.getElementById('cart-notification');
+    const notificationText = document.getElementById('notification-text');
+    
+    if (notification && notificationText) {
+        notificationText.textContent = message;
+        notification.classList.add('show');
+        
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+}
+
+// Обнови обработчик кнопок:
+orderButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const name = this.getAttribute('data-name');
+        const price = parseInt(this.getAttribute('data-price'));
+        
+        cart.push({ name, price });
+        totalPrice += price;
+        
+        updateCartDisplay();
+        showNotification(`"${name}" добавлен в корзину!`); // ← НОВОЕ!
+        
+        this.textContent = 'Добавлено!';
+        this.style.backgroundColor = '#2ecc71';
+        setTimeout(() => {
+            this.textContent = 'Добавить в заказ';
+            this.style.backgroundColor = '';
+        }, 1500);
+    });
+});
