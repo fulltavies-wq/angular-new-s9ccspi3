@@ -6,38 +6,24 @@
     <link rel="stylesheet" href="styles.css">
     <title>Кафе Cooking</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Kablammo:MORF@26&family=Playwrite+GB+S&family=Press+Start+2P&family=Rowdies:wght@300;400;700&family=Rubik+Wet+Paint&family=Sixtyfour+Convergence:SCAN,XELA@-1,-46&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Kablammo:MORF@26&family=Playwrite+GB+S&family=Press+Start+2P&family=Rowdies:wght@300;400;700&family=Rubik+Wet+Paint&family=Sixtyfour+Convergence:SCAN,XELA@-1,-46&display=swap" rel="stylesheet">
 </head>
-
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <img id="modalImage" src="" alt="">
-        <h2 id="modalTitle"></h2>
-        <div class="modal-rating" id="modalRating"></div>
-        <p id="modalDescription"></p>
-        <p id="modalPrice"></p>
-        <button class="order-btn" id="modalOrderBtn">Добавить в заказ</button>
-    </div>
-</div>
-<button class="scroll-to-top" id="scrollTopBtn">↑</button>
-
-<script src="script.js"></script>
-</body>
 <body>
     <header>
         <h1>Кафе Cooking</h1>
+        <div class="online-counter">
+            👥 <span id="online-count">24</span> человек сейчас смотрят меню
+        </div>
         <nav>
             <ul>
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#menu">Меню</a></li>
                 <li><a href="#contact">Контакты</a></li>
-                
             </ul>
         </nav>
     </header>
-        </div>
+
     <section id="about">
         <h2>О нашем кафе</h2>
         <p>Добро пожаловать в кафе "Cooking"! У нас вы найдете:</p>
@@ -47,217 +33,185 @@
             <li>Большое меню</li>
             <li>Уютную атмосферу</li>
         </ul>
-        <main>
-            <div class="all">
-                <input checked type="radio" name="respond" id="desktop">
-                    <article id="slider">
-                            <input checked type="radio" name="slider" id="switch1">
-                            <input type="radio" name="slider" id="switch2">
-                            <input type="radio" name="slider" id="switch3">
-                            <input type="radio" name="slider" id="switch4">
-                            <input type="radio" name="slider" id="switch5">
-                        <div id="slides">
-                            <div id="overflow">
-                                <div class="image">
-                                    <article><img src="img/кафе1.jpg"></article>
-                                    <article><img src="img/кафе2.jpg"></article>
-                                    <article><img src="img/кафе3.jpg"></article>
-                                </div>
-                            </div>
+        <div class="all">
+            <input checked type="radio" name="respond" id="desktop">
+            <article id="slider">
+                <input checked type="radio" name="slider" id="switch1">
+                <input type="radio" name="slider" id="switch2">
+                <input type="radio" name="slider" id="switch3">
+                <div id="slides">
+                    <div id="overflow">
+                        <div class="image">
+                            <article><img src="img/кафе1.jpg" alt="Интерьер кафе 1"></article>
+                            <article><img src="img/кафе2.jpg" alt="Интерьер кафе 2"></article>
+                            <article><img src="img/кафе3.jpg" alt="Интерьер кафе 3"></article>
                         </div>
-                        <div id="controls">
-                            <label for="switch1"></label>
-                            <label for="switch2"></label>
-                            <label for="switch3"></label>
-    
-                        </div>
-                        <div id="active">
-                            <label for="switch1"></label>
-                            <label for="switch2"></label>
-                            <label for="switch3"></label>
-    
-                        </div>
-                    </article>
-
-                    <div class="promotion-banner">
-                        <h3>🔥 Специальное предложение! 🔥</h3>
-                        <p>При заказе от 1500 руб. — бесплатная доставка!</p>
-                        <div id="promo-timer">До конца акции: --:--:--</div>
                     </div>
-
-                    
-    </section>
+                </div>
+                <div id="controls">
+                    <label for="switch1"></label>
+                    <label for="switch2"></label>
+                    <label for="switch3"></label>
+                </div>
+                <div id="active">
+                    <label for="switch1"></label>
+                    <label for="switch2"></label>
+                    <label for="switch3"></label>
+                </div>
+            </article>
+        </div>
+        <div class="promotion-banner">
+            <h3>🔥 Специальное предложение! 🔥</h3>
+            <p>При заказе от 1500 руб. — бесплатная доставка!</p>
+            <div id="promo-timer">До конца акции: --:--:--</div>
+        </div>
     </section>
 
     <section id="menu">
         <h2>Наше меню</h2>
         <p>Мы предлагаем широкий выбор блюд, от закусок до десертов, а также обширный выбор напитков.</p>
+        <div class="day-special">
+            <div class="special-icon">🍽️</div>
+            <div class="special-content">
+                <h3>БЛЮДО ДНЯ: <span id="day-dish">Салат "Цезарь" (350гр.)</span></h3>
+                <p>Сегодня со скидкой <span class="discount">-15%</span>!</p>
+                <p class="special-price">Всего <span class="old-price">379</span> <strong>322 руб.</strong></p>
+                <button class="special-order-btn" id="day-dish-order">Заказать блюдо дня</button>
+            </div>
+        </div>
         <div class="menu-filters">
-    <button class="filter-btn active" data-filter="all">Все блюда</button>
-    <button class="filter-btn" data-filter="zakuski">Закуски</button>
-    <button class="filter-btn" data-filter="drinks">Напитки</button>
-    <button class="filter-btn" data-filter="soups">Супы</button>
-    <button class="filter-btn" data-filter="main">Основные</button>
-</div>
+            <button class="filter-btn active" data-filter="all">Все блюда</button>
+            <button class="filter-btn" data-filter="zakuski">Закуски</button>
+            <button class="filter-btn" data-filter="drinks">Напитки</button>
+            <button class="filter-btn" data-filter="soups">Супы</button>
+            <button class="filter-btn" data-filter="main">Основные</button>
+            <button class="filter-btn" data-filter="popular">🔥 Популярное</button>
+        </div>
         <div class="tipamenu">
             <h3>Закуски</h3>
         </div>
         <div class="product-list">
-        
-
-            <!-- Салат "Цезарь" -->
-<div class="product">
-    <img src="img/cezar.png" alt="cezar">
-    <h3>Салат "Цезарь" (350гр.)</h3>
-    <p>Цена: 379 руб.</p>
-    <button class="order-btn" data-name="Салат 'Цезарь' (350гр.)" data-price="379">Добавить в заказ</button>
-</div>
-
-<!-- Пельмени -->
-<div class="product">
-    <img src="img/пельмени.png" alt="пельмени">
-    <h3>Пельмени (400гр.)</h3>
-    <p>Цена: 299 руб.</p>
-    <button class="order-btn" data-name="Пельмени (400гр.)" data-price="299">Добавить в заказ</button>
-</div>
-
-<!-- Солянка -->
-<div class="product">
-    <img src="img/солянка.png" alt="солянка">
-    <h3> Солянка (450гр.)</h3>
-    <p>Цена: 349 руб.</p>
-    <button class="order-btn" data-name="Солянка (450гр.)" data-price="349">Добавить в заказ</button>
-</div>
-
-<!-- Антрекот -->
-<div class="product">
-    <img src="img/Антрекот.png" alt="Антрекот">
-    <h3>Антрекот</h3>
-    <p>Цена: 749 руб.</p>
-    <button class="order-btn" data-name="Антрекот" data-price="749">Добавить в заказ</button>
-</div>
-
-<!-- Сельдь под шубой -->
-<div class="product">
-    <img src="img/Сельдь под шубой.png" alt="Сельдь под шубой">
-    <h3>Сельдь под шубой</h3>
-    <p>Цена: 339 руб.</p>
-    <button class="order-btn" data-name="Сельдь под шубой" data-price="339">Добавить в заказ</button>
-</div>
-
-<!-- Утиные ножки Конфи -->
-<div class="product">
-    <img src="img/Утиные ножки Конфи.jpg" alt="Утиные ножки «Конфи»">
-    <h3>Утиные ножки «Конфи»</h3>
-    <p>Цена: 899 руб.</p>
-    <button class="order-btn" data-name="Утиные ножки «Конфи»" data-price="899">Добавить в заказ</button>
-</div>
-
-<!-- Утопенцы по-чешски -->
-<div class="product">
-    <img src="img/Утопенцы по-чешски.jpg" alt="Утопенцы по-чешски">
-    <h3>Утопенцы по-чешски</h3>
-    <p>Цена: 499 руб.</p>
-    <button class="order-btn" data-name="Утопенцы по-чешски" data-price="499">Добавить в заказ</button>
-</div>
-
-<!-- Банановые панкейки -->
-<div class="product">
-    <img src="img/Банановые панкейки.jpg " alt="Банановые панкейки">
-    <h3>Банановые панкейки с кленовым сиропом</h3>
-    <p>Цена: 419 руб.</p>
-    <button class="order-btn" data-name="Банановые панкейки с кленовым сиропом" data-price="419">Добавить в заказ</button>
-</div>
-
-<!-- Борщ с говядиной -->
-<div class="product">
-    <img src="img/Борщ с говядиной.jpg " alt="Борщ с говядиной">
-    <h3>Борщ с говядиной</h3>
-    <p>Цена: 319 руб.</p>
-    <button class="order-btn" data-name="Борщ с говядиной" data-price="319">Добавить в заказ</button>
-</div>
-
-<!-- Гаспачо -->
-<div class="product">
-    <img src="img/Гаспачо.jpg " alt="Гаспачо">
-    <h3>Гаспачо</h3>
-    <p>Цена: 329 руб.</p>
-    <button class="order-btn" data-name="Гаспачо" data-price="329">Добавить в заказ</button>
-</div>
-
-<!-- Суп Харчо с курицей и рисом -->
-<div class="product">
-    <img src="img/Суп Харчо с курицей и рисом.jpg " alt="Суп «Харчо» с курицей и рисом">
-    <h3>Суп «Харчо» с курицей и рисом</h3>
-    <p>Цена: 319 руб.</p>
-    <button class="order-btn" data-name="Суп «Харчо» с курицей и рисом" data-price="319">Добавить в заказ</button>
-</div>
-
-<!-- Салат Капрезе -->
-<div class="product">
-    <img src="img/Салат Капрезе.jpg" alt="Салат Капрезе">
-    <h3>Салат Капрезе</h3>
-    <p>Цена: 329 руб.</p>
-    <button class="order-btn" data-name="Салат Капрезе" data-price="329">Добавить в заказ</button>
-</div>
-            
-
-
-           <!-- Малиновый лимонад -->
-<div class="product">
-    <img src="img/Малиновый лимонад.jpg" alt="Малиновый лимонад">
-    <h3>Малиновый лимонад (400мл.)</h3>
-    <p>Цена: 229 руб.</p>
-    <button class="order-btn" data-name="Малиновый лимонад (400мл.)" data-price="229">Добавить в заказ</button>
-</div>
-
-<!-- Лимонад с красной смородиной и мятой -->
-<div class="product">
-    <img src="img/Лимонад с красной смородиной и мятой.jpg" alt="Лимонад с красной смородиной и мятой">
-    <h3>Лимонад с красной смородиной и мятой (400мл.)</h3>
-    <p>Цена: 229 руб.</p>
-    <button class="order-btn" data-name="Лимонад с красной смородиной и мятой (400мл.)" data-price="229">Добавить в заказ</button>
-</div>
-
-<!-- Лимонад с лимоном, апельсином и мятой -->
-<div class="product">
-    <img src="img/Лимонад с лимоном, апельсином и мятой.jpg" alt="Лимонад с лимоном, апельсином и мятой">
-    <h3>Лимонад с лимоном, апельсином и мятой (400мл.)</h3>
-    <p>Цена: 229 руб.</p>
-    <button class="order-btn" data-name="Лимонад с лимоном, апельсином и мятой (400мл.)" data-price="229">Добавить в заказ</button>
-</div>
-
-<!-- Мокачино -->
-<div class="product">
-    <img src="img/Мокачино.jpg" alt="Мокачино">
-    <h3>Мокачино (150мл.)</h3>
-    <p>Цена: 249 руб.</p>
-    <button class="order-btn" data-name="Мокачино (150мл.)" data-price="249">Добавить в заказ</button>
-</div>
-
-<!-- Капучино -->
-<div class="product">
-    <img src="img/Капучино.jpg" alt="Капучино">
-    <h3>Капучино (150мл.)</h3>
-    <p>Цена: 249 руб.</p>
-    <button class="order-btn" data-name="Капучино (150мл.)" data-price="249">Добавить в заказ</button>
-</div>
-
-<!-- Латте -->
-<div class="product">
-    <img src="img/Латте.jpg" alt="Латте">
-    <h3>Латте (150мл.)</h3>
-    <p>Цена: 249 руб.</p>
-    <button class="order-btn" data-name="Латте (150мл.)" data-price="249">Добавить в заказ</button>
-</div>
-
+            <div class="product" data-category="zakuski popular">
+                <div class="hot-badge">🔥 ХИТ</div>
+                <img src="img/cezar.png" alt="Салат Цезарь">
+                <h3>Салат "Цезарь" (350гр.)</h3>
+                <p>Цена: 379 руб.</p>
+                <button class="order-btn" data-name="Салат 'Цезарь' (350гр.)" data-price="379">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="main">
+                <img src="img/пельмени.png" alt="Пельмени">
+                <h3>Пельмени (400гр.)</h3>
+                <p>Цена: 299 руб.</p>
+                <button class="order-btn" data-name="Пельмени (400гр.)" data-price="299">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="soups popular">
+                <div class="hot-badge popular">🔥 ПОПУЛЯРНОЕ</div>
+                <img src="img/солянка.png" alt="Солянка">
+                <h3>Солянка (450гр.)</h3>
+                <p>Цена: 349 руб.</p>
+                <button class="order-btn" data-name="Солянка (450гр.)" data-price="349">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="main popular">
+                <div class="hot-badge bestseller">🏆 БЕСТСЕЛЛЕР</div>
+                <img src="img/Антрекот.png" alt="Антрекот">
+                <h3>Антрекот</h3>
+                <p>Цена: 749 руб.</p>
+                <button class="order-btn" data-name="Антрекот" data-price="749">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="zakuski">
+                <img src="img/Сельдь под шубой.png" alt="Сельдь под шубой">
+                <h3>Сельдь под шубой</h3>
+                <p>Цена: 339 руб.</p>
+                <button class="order-btn" data-name="Сельдь под шубой" data-price="339">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="main popular">
+                <div class="hot-badge">🔥 ХИТ</div>
+                <img src="img/Утиные ножки Конфи.jpg" alt="Утиные ножки «Конфи»">
+                <h3>Утиные ножки «Конфи»</h3>
+                <p>Цена: 899 руб.</p>
+                <button class="order-btn" data-name="Утиные ножки «Конфи»" data-price="899">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="main">
+                <img src="img/Утопенцы по-чешски.jpg" alt="Утопенцы по-чешски">
+                <h3>Утопенцы по-чешски</h3>
+                <p>Цена: 499 руб.</p>
+                <button class="order-btn" data-name="Утопенцы по-чешски" data-price="499">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="zakuski">
+                <img src="img/Банановые панкейки.jpg" alt="Банановые панкейки">
+                <h3>Банановые панкейки с кленовым сиропом</h3>
+                <p>Цена: 419 руб.</p>
+                <button class="order-btn" data-name="Банановые панкейки с кленовым сиропом" data-price="419">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="soups">
+                <img src="img/Борщ с говядиной.jpg" alt="Борщ с говядиной">
+                <h3>Борщ с говядиной</h3>
+                <p>Цена: 319 руб.</p>
+                <button class="order-btn" data-name="Борщ с говядиной" data-price="319">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="soups">
+                <img src="img/Гаспачо.jpg" alt="Гаспачо">
+                <h3>Гаспачо</h3>
+                <p>Цена: 329 руб.</p>
+                <button class="order-btn" data-name="Гаспачо" data-price="329">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="soups">
+                <img src="img/Суп Харчо с курицей и рисом.jpg" alt="Суп «Харчо» с курицей и рисом">
+                <h3>Суп «Харчо» с курицей и рисом</h3>
+                <p>Цена: 319 руб.</p>
+                <button class="order-btn" data-name="Суп «Харчо» с курицей и рисом" data-price="319">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="zakuski popular">
+                <div class="hot-badge new">🆕 НОВИНКА</div>
+                <img src="img/Салат Капрезе.jpg" alt="Салат Капрезе">
+                <h3>Салат Капрезе</h3>
+                <p>Цена: 329 руб.</p>
+                <button class="order-btn" data-name="Салат Капрезе" data-price="329">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="drinks popular">
+                <div class="hot-badge">🔥 ХИТ</div>
+                <img src="img/Малиновый лимонад.jpg" alt="Малиновый лимонад">
+                <h3>Малиновый лимонад (400мл.)</h3>
+                <p>Цена: 229 руб.</p>
+                <button class="order-btn" data-name="Малиновый лимонад (400мл.)" data-price="229">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="drinks">
+                <img src="img/Лимонад с красной смородиной и мятой.jpg" alt="Лимонад с красной смородиной и мятой">
+                <h3>Лимонад с красной смородиной и мятой (400мл.)</h3>
+                <p>Цена: 229 руб.</p>
+                <button class="order-btn" data-name="Лимонад с красной смородиной и мятой (400мл.)" data-price="229">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="drinks">
+                <img src="img/Лимонад с лимоном, апельсином и мятой.jpg" alt="Лимонад с лимоном, апельсином и мятой">
+                <h3>Лимонад с лимоном, апельсином и мятой (400мл.)</h3>
+                <p>Цена: 229 руб.</p>
+                <button class="order-btn" data-name="Лимонад с лимоном, апельсином и мятой (400мл.)" data-price="229">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="drinks">
+                <img src="img/Мокачино.jpg" alt="Мокачино">
+                <h3>Мокачино (150мл.)</h3>
+                <p>Цена: 249 руб.</p>
+                <button class="order-btn" data-name="Мокачино (150мл.)" data-price="249">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="drinks">
+                <img src="img/Капучино.jpg" alt="Капучино">
+                <h3>Капучино (150мл.)</h3>
+                <p>Цена: 249 руб.</p>
+                <button class="order-btn" data-name="Капучино (150мл.)" data-price="249">Добавить в заказ</button>
+            </div>
+            <div class="product" data-category="drinks">
+                <img src="img/Латте.jpg" alt="Латте">
+                <h3>Латте (150мл.)</h3>
+                <p>Цена: 249 руб.</p>
+                <button class="order-btn" data-name="Латте (150мл.)" data-price="249">Добавить в заказ</button>
+            </div>
+        </div>
     </section>
     
     <section id="cart">
         <h2>Ваш заказ</h2>
         <div class="cart-container">
             <div id="cart-items">
-                
                 <p class="empty-cart-msg">Корзина пуста. Добавьте что-нибудь из меню!</p>
             </div>
             <div class="cart-summary">
@@ -272,17 +226,26 @@
         <h2>Контакты</h2>
         <p>Вы можете связаться с нами по телефону: +7 (123) 456-7890</p>
         <p>Адрес: ул. Вкусная, 10, Москва</p>
-        
-<div class="map-container">
-    <h3>Мы на карте</h3>
-    
-    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3AYourMapCode&source=constructor" width="100%" height="300" frameborder="0"></iframe>
-</div>
+        <div class="map-container">
+            <h3>Мы на карте</h3>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3AYourMapCode&source=constructor" width="100%" height="300" frameborder="0" title="Карта расположения кафе"></iframe>
+        </div>
     </footer>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <h2 id="modalTitle"></h2>
+            <div class="modal-rating" id="modalRating"></div>
+            <p id="modalDescription"></p>
+            <p id="modalPrice"></p>
+            <button class="order-btn" id="modalOrderBtn">Добавить в заказ</button>
+        </div>
+    </div>
+
+    <button class="scroll-to-top" id="scrollTopBtn">↑</button>
 
     <script src="script.js"></script>
 </body>
-
-</body>
 </html>
-
