@@ -326,7 +326,7 @@ function updateOnlineCounter() {
     }
 }
 
-// ========== 9. ЕДИНАЯ ИНИЦИАЛИЗАЦИЯ ==========
+// ========== ЕДИНАЯ ИНИЦИАЛИЗАЦИЯ ==========
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Страница загружена!');
     
@@ -342,6 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Запускаем счетчик онлайн
     updateOnlineCounter();
     
+    // Настраиваем блюдо дня
+    setupDaySpecial();
+    
+    // Настраиваем темную тему (НОВАЯ ФУНКЦИЯ)
+    setupDarkTheme();
+    
     // Анимация товаров
     const products = document.querySelectorAll('.product');
     products.forEach((product, index) => {
@@ -354,7 +360,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 50);
     });
 });
-
 // ========== БЛЮДО ДНЯ (автоматическая смена) ==========
 function updateDaySpecial() {
     const dishes = [
@@ -465,3 +470,66 @@ orderButtons.forEach(button => {
         }, 1500);
     });
 });
+
+// ========== ТЕМНАЯ ТЕМА ==========
+function setupDarkTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkThemeCSS = document.getElementById('dark-theme-css');
+    
+    // Проверяем сохраненную тему в localStorage
+    const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+    
+    // Применяем сохраненную тему
+    if (isDarkTheme) {
+        document.body.classList.add('dark-theme');
+        if (themeToggle) themeToggle.textContent = '☀️ Тема';
+    }
+    
+    // Создаем элемент для темной темы, если его нет
+    if (!darkThemeCSS) {
+        const link = document.createElement('link');
+        link.id = 'dark-theme-css';
+        link.rel = 'stylesheet';
+        link.href = 'dark-theme.css';
+        document.head.appendChild(link);
+    }
+    
+    // Обработчик клика на кнопку
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            
+            const isNowDark = document.body.classList.contains('dark-theme');
+            
+            // Меняем иконку кнопки
+            themeToggle.textContent = isNowDark ? '☀️ Тема' : '🌙 Тема';
+            
+            // Сохраняем выбор в localStorage
+            localStorage.setItem('darkTheme', isNowDark);
+            
+            // Анимация переключения
+            themeToggle.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'scale(1)';
+            }, 100);
+            
+            console.log(`Тема изменена: ${isNowDark ? 'Темная' : 'Светлая'}`);
+        });
+    }
+    
+    // Автоматическое переключение по времени (опционально)
+    function autoThemeByTime() {
+        const hour = new Date().getHours();
+        const isNightTime = hour >= 20 || hour <= 6; // С 20:00 до 6:00
+        
+        if (isNightTime && !document.body.classList.contains('dark-theme')) {
+            document.body.classList.add('dark-theme');
+            if (themeToggle) themeToggle.textContent = '☀️ Тема';
+            localStorage.setItem('darkTheme', true);
+            console.log('Автоматически включена темная тема (ночное время)');
+        }
+    }
+    
+    // Проверяем время при загрузке
+    autoThemeByTime();
+}
