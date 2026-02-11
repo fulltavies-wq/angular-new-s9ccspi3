@@ -12,6 +12,9 @@
 <body>
     <header>
         <h1>Кафе Cooking</h1>
+        <button id="theme-toggle" class="theme-toggle-btn" title="Переключить тему">
+            🌙 Тема
+        </button>
         <div class="online-counter">
             👥 <span id="online-count">24</span> человек сейчас смотрят меню
         </div>
@@ -226,12 +229,46 @@
         <h2>Контакты</h2>
         <p>Вы можете связаться с нами по телефону: +7 (123) 456-7890</p>
         <p>Адрес: ул. Вкусная, 10, Москва</p>
+        
+        <!-- WHATSAPP ЗАКАЗ -->
+        <div class="whatsapp-order">
+            <div class="whatsapp-header">
+                <div class="whatsapp-icon">💬</div>
+                <h3>Заказ через WhatsApp</h3>
+            </div>
+            <p>Нажмите кнопку, чтобы сразу написать нам ваш заказ!</p>
+            
+            <div class="whatsapp-buttons">
+                <a href="https://wa.me/79001234567?text=Здравствуйте!%20Хочу%20заказать:" 
+                   class="whatsapp-btn whatsapp-order-btn" 
+                   target="_blank" 
+                   id="whatsapp-simple">
+                    📱 Просто заказать
+                </a>
+                
+                <button class="whatsapp-btn whatsapp-cart-btn" id="whatsapp-cart">
+                    🛒 Заказать корзину
+                </button>
+                
+                <button class="whatsapp-btn whatsapp-custom-btn" id="whatsapp-custom">
+                    ✏️ Свой текст
+                </button>
+            </div>
+            
+            <div class="whatsapp-info">
+                <p><strong>📞 Номер:</strong> +7 (900) 123-45-67</p>
+                <p><strong>⏰ Работаем:</strong> 10:00 - 23:00</p>
+                <p><strong>🚚 Доставка:</strong> 45-60 минут</p>
+            </div>
+        </div>
+        
         <div class="map-container">
             <h3>Мы на карте</h3>
             <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3AYourMapCode&source=constructor" width="100%" height="300" frameborder="0" title="Карта расположения кафе"></iframe>
         </div>
     </footer>
 
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -244,7 +281,51 @@
         </div>
     </div>
 
+    <!-- МОДАЛЬНОЕ ОКНО WHATSAPP -->
+    <div id="whatsappModal" class="whatsapp-modal">
+        <div class="whatsapp-modal-content">
+            <h3>✏️ Написать свой текст</h3>
+            <p>Напишите ваше сообщение, которое будет отправлено в WhatsApp:</p>
+            
+            <textarea id="whatsappCustomText" placeholder="Например: Здравствуйте! Хочу заказать...
+- Салат Цезарь
+- Пельмени
+Доставка по адресу: ..."></textarea>
+            
+            <div class="whatsapp-modal-buttons">
+                <button class="whatsapp-btn whatsapp-custom-btn" id="whatsappSendCustom">
+                    📤 Отправить
+                </button>
+                <button class="whatsapp-btn whatsapp-order-btn" id="whatsappModalClose">
+                    Отмена
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- КНОПКА НАВЕРХ -->
     <button class="scroll-to-top" id="scrollTopBtn">↑</button>
+
+    <!-- УВЕДОМЛЕНИЯ -->
+    <div id="cart-notification" class="cart-notification">
+        <div class="notification-icon">🛒</div>
+        <div class="notification-content">
+            <div class="notification-title" id="notification-title">Товар добавлен</div>
+            <div class="notification-text" id="notification-text"></div>
+            <div class="notification-time">только что</div>
+        </div>
+        <button class="notification-close">&times;</button>
+    </div>
+
+    <!-- УВЕДОМЛЕНИЕ О ДОСТАВКЕ -->
+    <div id="delivery-notification" class="cart-notification delivery-notification">
+        <div class="notification-icon">🚚</div>
+        <div class="notification-content">
+            <div class="notification-title">Бесплатная доставка!</div>
+            <div class="notification-text">Вы получили бесплатную доставку заказа</div>
+        </div>
+        <button class="notification-close">&times;</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
