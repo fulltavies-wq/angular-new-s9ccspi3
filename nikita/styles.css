@@ -1,252 +1,22 @@
-#slider { /*положение слайдера*/
-    position: relative;
-	text-align: right;
-    top: 0;
-}
-
-#slider{ /*центровка слайдера*/
-	margin: 0 auto;
-}
-
-#slides article{ /*все изображения справа друг от доруга*/
-	width: 20%;
-	float: left;
-}
-
-#slides .image{ /*устанавливает общий размер блока с изображениями*/
-	width: 500%;
-	line-height: 0;
-}
-
-#overflow{ /*сркывает все, что находится за пределами этого блока*/
-	width: 100%;
-	overflow: hidden;
-}
-
-article img{ /*размер изображений слайдера*/
-	width: 100%;
-}
-
-#desktop:checked ~ #slider{ /*размер всего слайдера*/
-	max-width: 900px; /*максимальнная длинна*/
-}
-
-/*настройка переключения и положения для левой стрелки*/
-/*если свич1-3 активны, то идет обращение к лейблу из блока с id контролс*/
-#switch4:checked ~ #controls label:nth-child(3), 
-#switch2:checked ~ #controls label:nth-child(1),
-#switch3:checked ~ #controls label:nth-child(2){
-	background: url('img/prev.png') no-repeat; /*заливка фона картинкой без повторений*/
-	float: left;
-	margin: 0 0 0 -84px; /*сдвиг влево*/
-	display: block;
-	height: 68px;
-	width: 68px;
-}
-
-/*настройка переключения и положения для правой стрелки*/
-#switch1:checked ~ #controls label:nth-child(2), 
-#switch2:checked ~ #controls label:nth-child(3),
-#switch5:checked ~ #controls label:nth-child(1){
-	background: url('img/next.png') no-repeat; /*заливка фона картинкой без повторений*/
-	float: right;
-	margin: 0 -84px 0 0; /*сдвиг вправо*/
-	display: block;
-	height: 68px;
-	width: 68px;
-}
-
-label, a{ /*при наведении на стрелки или переключатели - курсор изменится*/
-	cursor: pointer;
-}
-
-.all input{ /*скрывает стандартные инпуты (чекбоксы) на странице*/
-	display: none;
-}
-
-/*позиция изображения при активации переключателя*/
-#switch1:checked ~ #slides .image{
-	margin-left: 0;
-}
-
-#switch2:checked ~ #slides .image{
-	margin-left: -100%;
-}
-
-#switch3:checked ~ #slides .image{
-	margin-left: -200%;
-}
-
-#switch4:checked ~ #slides .image{
-	margin-left: -300%;
-}
-
-#switch5:checked ~ #slides .image{
-	margin-left: -400%;
-}
-
-#controls{ /*положение блока всех управляющих элементов*/
-	margin: -20% 0 0 0;
-	width: 100%;
-	height: 50px;
-}
-
-
-
-#active{ /*расположение блока с переключателями*/
-	margin: 23% 0 0;
-	text-align: center;
-}
-
-#active label:hover{ /*поведение чекбокса при наведении*/
-	background: #76c8ff;
-	border-color: #777 !important; /*выполнение в любом случае*/
-}
-
-/*цвет активного лейбла при активации чекбокса*/
-#switch1:checked ~ #active label:nth-child(1),
-#switch2:checked ~ #active label:nth-child(2),
-#switch3:checked ~ #active label:nth-child(3){
-	background: #18a3dd;
-	border-color: #18a3dd !important;
-}
-
-#slides .image{ /*анимация пролистывания изображений*/
-	transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
-}
-
-#controls label:hover{ /*прозрачность стрелок при наведении*/
-	opacity: 0.6;
-}
-
-#controls label{ /*прозрачность стрелок при отводе курсора*/
-	transition: opacity 0.2s ease-out;
-}
-
-
-
-
-
-
-body {
-    font-family: Arial, sans-serif;
+/* ========== ОСНОВНЫЕ СТИЛИ ========== */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-header {
-    font-family: "DynaPuff", system-ui;
-    background-color: #ff5733;
-    color: white;
-    padding: 5px 0;
-    text-align: center;
-}
-
-nav ul {
-    
-    
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-section {
-    font-family: "DynaPuff", system-ui;
-    padding: 5px;
-    margin: 10px;
-    background-color: rgb(202, 172, 127);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    color: #ff5733;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #ff5733;
-    color: white;
-}
-.product-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.product {
-    font-family: "DynaPuff", system-ui;
-    background: #dd891b;
-    border-radius: 40px;
-    border: 10px solid #ffffff;
-    padding: 10px;
-    box-shadow: 0 0 30px #444;
-    margin: 10px;
-    width: 30%;
     box-sizing: border-box;
-    text-align: center;
 }
 
-.product h3 {
-    margin-top: 0;
-}
-img {
-    border-radius: 10px; 
-    border: 10px rgb(231, 147, 20) solid; 
-    box-shadow: 0 0 30px #444;
-    width: 400px;
-    }
-
-
-    .menu {
-        width: 100%;
-        margin: 0 auto;
-        overflow: hidden;
-    }
-
-.tipamenu {
-    
-    font-family: "Rowdies", serif;
-  font-weight: 300;
-  font-style: normal;
-    background: #ff5733;
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    width: 220px;
-    border-radius: 50%;
-    box-sizing:content-box ;
-    text-align: center;
-}
-#about {
-    font-family: "Rowdies", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-/* ========== 1. Улучшение общего вида и адаптивности ========== */
 body {
-    font-family: 'Exo 2', sans-serif; /* Более читаемый шрифт для основного текста */
+    font-family: 'Exo 2', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fefaf6; /* Теплый светлый фон */
+    background-color: #fefaf6;
     color: #333;
     line-height: 1.6;
 }
 
+/* ========== ШАПКА САЙТА ========== */
 header {
-    background: linear-gradient(to right, #d35400, #e67e22); /* Градиент для шапки */
+    background: linear-gradient(to right, #d35400, #e67e22);
     color: white;
     padding: 1.5rem 0;
     text-align: center;
@@ -257,12 +27,62 @@ header {
 }
 
 header h1 {
-    font-family: 'Rubik Wet Paint', cursive; /* Яркий, запоминающийся шрифт для названия */
+    font-family: 'Rubik Wet Paint', cursive;
     margin: 0;
     font-size: 2.8rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* ========== КНОПКА ТЕМЫ ========== */
+.theme-toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    z-index: 1001;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* ========== СЧЕТЧИК ОНЛАЙН ========== */
+.online-counter {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    margin: 10px auto;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    text-align: center;
+    animation: pulse-online 3s infinite;
+}
+
+@keyframes pulse-online {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(241, 196, 15, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(241, 196, 15, 0); }
+}
+
+#online-count {
+    font-weight: bold;
+    color: #f1c40f;
+    font-size: 1.1rem;
+}
+
+/* ========== НАВИГАЦИЯ ========== */
 nav ul {
     list-style: none;
     padding: 0;
@@ -288,7 +108,277 @@ nav a:hover {
     transform: translateY(-2px);
 }
 
-/* ========== 2. Стилизация карточек меню ========== */
+/* ========== СЕКЦИИ ========== */
+section {
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Rowdies', cursive;
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #e67e22, #d35400);
+    margin: 10px auto 30px;
+    border-radius: 2px;
+}
+
+/* ========== СЛАЙДЕР ========== */
+#slider {
+    position: relative;
+    text-align: right;
+    margin: 0 auto;
+}
+
+#slides article {
+    width: 20%;
+    float: left;
+}
+
+#slides .image {
+    width: 500%;
+    line-height: 0;
+}
+
+#overflow {
+    width: 100%;
+    overflow: hidden;
+}
+
+article img {
+    width: 100%;
+}
+
+#desktop:checked ~ #slider {
+    max-width: 900px;
+}
+
+#switch1:checked ~ #slides .image {
+    margin-left: 0;
+}
+
+#switch2:checked ~ #slides .image {
+    margin-left: -100%;
+}
+
+#switch3:checked ~ #slides .image {
+    margin-left: -200%;
+}
+
+#active {
+    margin: 23% 0 0;
+    text-align: center;
+}
+
+#active label {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #bbb;
+    margin: 0 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#active label:hover {
+    background: #76c8ff;
+    border-color: #777 !important;
+}
+
+#switch1:checked ~ #active label:nth-child(1),
+#switch2:checked ~ #active label:nth-child(2),
+#switch3:checked ~ #active label:nth-child(3) {
+    background: #18a3dd;
+    border-color: #18a3dd !important;
+}
+
+#slides .image {
+    transition: all 800ms cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+
+.all input {
+    display: none;
+}
+
+/* ========== БАННЕР АКЦИИ ========== */
+.promotion-banner {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 800px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); 
+        transform: scale(1);
+    }
+    70% { 
+        box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); 
+        transform: scale(1.02);
+    }
+}
+
+#promo-timer {
+    font-weight: bold;
+    font-size: 1.3rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#promo-timer strong {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin: 0 5px;
+}
+
+/* ========== БЛЮДО ДНЯ ========== */
+.day-special {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.special-icon {
+    font-size: 3.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.special-content {
+    flex: 1;
+}
+
+.day-special h3 {
+    color: white;
+    margin: 0 0 10px 0;
+    font-size: 1.6rem;
+}
+
+.day-special h3 span {
+    color: #f1c40f;
+    font-weight: bold;
+}
+
+.discount {
+    background: #2ecc71;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    animation: discountPulse 1.5s infinite;
+    display: inline-block;
+}
+
+@keyframes discountPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.special-price {
+    font-size: 1.3rem;
+    margin: 10px 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #bdc3c7;
+    margin-right: 10px;
+}
+
+.special-order-btn {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #2c3e50;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.special-order-btn:hover {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(241, 196, 15, 0.4);
+}
+
+/* ========== ФИЛЬТРЫ МЕНЮ ========== */
+.menu-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 25px;
+    background: #ecf0f1;
+    border: 2px solid #bdc3c7;
+    border-radius: 30px;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #2c3e50;
+}
+
+.filter-btn:hover {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+    transform: translateY(-3px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(to right, #e67e22, #d35400);
+    color: white;
+    border-color: #d35400;
+    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+}
+
+/* ========== КАРТОЧКИ ТОВАРОВ ========== */
 .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -307,6 +397,7 @@ nav a:hover {
     text-align: center;
     padding-bottom: 1.5rem;
     border: 1px solid #eee;
+    position: relative;
 }
 
 .product:hover {
@@ -334,96 +425,58 @@ nav a:hover {
 }
 
 .product p {
-    color: #27ae60; /* Зеленый цвет для цены */
+    color: #27ae60;
     font-weight: bold;
     font-size: 1.2rem;
     margin: 0.5rem 0;
 }
 
-/* ========== 3. Заголовки разделов ========== */
-section {
-    padding: 3rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-h2 {
-    text-align: center;
-    font-family: 'Rowdies', cursive;
-    color: #2c3e50;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    position: relative;
-}
-
-h2::after {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(to right, #e67e22, #d35400);
-    margin: 10px auto 30px;
-    border-radius: 2px;
-}
-
-/* ========== 4. Футер ========== */
-footer {
-    background: #2c3e50;
-    color: #ecf0f1;
-    text-align: center;
-    padding: 2.5rem 1rem;
-    margin-top: 3rem;
-}
-
-footer h2 {
-    color: #ecf0f1;
-}
-
-footer p {
-    margin: 0.8rem 0;
-    font-size: 1.1rem;
-}
-
-/* ========== 5. Стили для "типов меню" (Закуски, Напитки) ========== */
-.tipamenu {
-    text-align: center;
-    margin: 3rem 0 1rem;
-    padding-top: 2rem;
-    border-top: 2px dashed #ddd;
-}
-
-.tipamenu h3 {
-    display: inline-block;
-    background: linear-gradient(to right, #3498db, #2ecc71);
+/* ========== ГОРЯЧИЕ МЕТКИ ========== */
+.hot-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
     color: white;
-    padding: 0.8rem 2.5rem;
-    border-radius: 50px;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+    animation: pulse-hot 2s infinite;
 }
 
-/* ========== 6. Базовая адаптивность ========== */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-    nav ul {
-        gap: 1rem;
-    }
-    nav a {
-        font-size: 1rem;
-    }
-    .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
-        padding: 1rem;
-    }
-    h2 {
-        font-size: 2rem;
-    }
+.hot-badge.popular {
+    background: linear-gradient(135deg, #3498db, #2980b9);
 }
 
-/* ========== 7. Стили для корзины ========== */
+.hot-badge.bestseller {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+}
+
+.hot-badge.new {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+@keyframes pulse-hot {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========== БОНУСЫ НА ТОВАРАХ ========== */
+.product-bonus {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #2c3e50;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+/* ========== КОРЗИНА ========== */
 #cart {
     background: #f8f9fa;
     border-radius: 15px;
@@ -475,11 +528,12 @@ footer p {
     height: 25px;
     cursor: pointer;
     font-size: 1.2rem;
-    line-height: 1;
+    transition: all 0.3s;
 }
 
 .remove-item:hover {
     background: #c0392b;
+    transform: scale(1.1);
 }
 
 .cart-summary {
@@ -539,110 +593,304 @@ footer p {
     background: linear-gradient(to right, #27ae60, #219653);
 }
 
-@media (max-width: 768px) {
-    .cart-container {
-        grid-template-columns: 1fr;
-    }
+/* ========== СИСТЕМА ЛОЯЛЬНОСТИ ========== */
+#loyalty {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    border-radius: 20px;
+    margin: 3rem auto;
+    padding: 2rem;
 }
 
-/* ========== ФИЛЬТРЫ МЕНЮ ========== */
-.menu-filters {
+#loyalty h2 {
+    color: white;
+}
+
+#loyalty h2::after {
+    background: linear-gradient(to right, #f1c40f, #f39c12);
+}
+
+.loyalty-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.bonus-card {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    border-radius: 20px;
+    padding: 2rem;
+    color: #2c3e50;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(241, 196, 15, 0.3);
+    grid-column: span 2;
+}
+
+.bonus-header {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 2rem 0;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
-.filter-btn {
-    padding: 12px 25px;
-    background: #ecf0f1;
-    border: 2px solid #bdc3c7;
-    border-radius: 30px;
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 600;
+.bonus-logo {
+    font-size: 2.5rem;
+}
+
+.bonus-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    font-family: 'Rowdies', cursive;
+}
+
+.bonus-number {
+    font-family: monospace;
+    font-size: 1.4rem;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+.bonus-holder {
     font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    opacity: 0.8;
+    margin-bottom: 25px;
+}
+
+.bonus-balance {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.bonus-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.bonus-amount {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0 5px;
     color: #2c3e50;
 }
 
-.filter-btn:hover {
-    background: #3498db;
-    color: white;
-    border-color: #3498db;
-    transform: translateY(-3px);
+.bonus-currency {
+    font-size: 1rem;
 }
 
-.filter-btn.active {
-    background: linear-gradient(to right, #e67e22, #d35400);
-    color: white;
-    border-color: #d35400;
-    box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+.bonus-level {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
 }
 
-/* ========== РЕЙТИНГ ========== */
-.rating {
-    color: #f1c40f;
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
+.bonus-progress-container {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 15px;
 }
 
-.star {
-    display: inline-block;
-    margin: 0 2px;
+.bonus-progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
-/* ========== КНОПКА ВВЕРХ ========== */
-.scroll-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(to right, #e67e22, #d35400);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-
-.scroll-to-top:hover {
-    transform: scale(1.1);
-    background: linear-gradient(to right, #d35400, #c0392b);
-}
-
-/* ========== АКЦИЯ ========== */
-.promotion-banner {
-    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
+.bonus-progress-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    overflow: hidden;
+}
+
+.bonus-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2c3e50, #34495e);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.loyalty-levels {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.loyalty-levels h3 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.level-item {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.level-item:hover {
+    transform: translateY(-5px);
+}
+
+.level-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.level-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #f1c40f;
+}
+
+.level-requirement {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.level-discount {
+    background: #2ecc71;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.bonus-history {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.bonus-history h3 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+}
+
+.bonus-rules {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.bonus-rules h3 {
+    color: #f1c40f;
+    margin-bottom: 20px;
+}
+
+.bonus-rules ul {
+    list-style: none;
+}
+
+.bonus-rules li {
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.bonus-rules li::before {
+    content: "✅";
+    position: absolute;
+    left: 0;
+}
+
+/* ========== WHATSAPP ЗАКАЗ ========== */
+.whatsapp-order {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: white;
+    padding: 2rem;
+    border-radius: 20px;
     margin: 2rem auto;
     max-width: 800px;
-    animation: pulse 2s infinite;
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.3);
 }
 
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+.whatsapp-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
-#promo-timer {
+.whatsapp-icon {
+    font-size: 3rem;
+    animation: whatsappBounce 2s infinite;
+}
+
+@keyframes whatsappBounce {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+}
+
+.whatsapp-header h3 {
+    color: white;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.whatsapp-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border: none;
+    border-radius: 15px;
     font-weight: bold;
-    font-size: 1.3rem;
-    background: rgba(255,255,255,0.2);
-    padding: 5px 15px;
-    border-radius: 20px;
-    display: inline-block;
-    margin-top: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-order-btn {
+    background: white;
+    color: #25D366;
+}
+
+.whatsapp-cart-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+}
+
+.whatsapp-custom-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+}
+
+.whatsapp-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
 }
 
 /* ========== МОДАЛЬНОЕ ОКНО ========== */
@@ -684,77 +932,205 @@ footer p {
     color: #e74c3c;
 }
 
-#modalImage {
-    width: 100%;
-    max-height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
+/* ========== КНОПКА НАВЕРХ ========== */
+.scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(to right, #e67e22, #d35400);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover {
+    transform: scale(1.1);
+    background: linear-gradient(to right, #d35400, #c0392b);
+}
+
+/* ========== УВЕДОМЛЕНИЯ ========== */
+.cart-notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 300px;
+    max-width: 350px;
+    opacity: 0;
+    transform: translateX(150%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.cart-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.delivery-notification {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    top: 180px;
+}
+
+.bonus-notification {
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: #2c3e50;
+    top: 260px;
+}
+
+.notification-icon {
+    font-size: 2rem;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.notification-time {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 3px;
+}
+
+.notification-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* ========== ФУТЕР ========== */
+footer {
+    background: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 2.5rem 1rem;
+    margin-top: 3rem;
+}
+
+footer h2 {
+    color: #ecf0f1;
+}
+
+footer h2::after {
+    background: linear-gradient(to right, #f1c40f, #f39c12);
+}
+
+footer p {
+    margin: 0.8rem 0;
+    font-size: 1.1rem;
+}
+
+.map-container {
+    margin-top: 2rem;
+}
+
+.map-container h3 {
+    color: #f1c40f;
     margin-bottom: 1rem;
 }
 
-.modal-rating {
-    color: #f1c40f;
-    font-size: 1.3rem;
-    margin: 1rem 0;
+.map-container iframe {
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-/* ========== УЛУЧШЕННАЯ АДАПТИВНОСТЬ ========== */
-@media (max-width: 1200px) {
-    .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 1.5rem;
-    }
+/* ========== ЗАГОЛОВКИ РАЗДЕЛОВ ========== */
+.tipamenu {
+    text-align: center;
+    margin: 3rem 0 1rem;
+    padding-top: 2rem;
+    border-top: 2px dashed #ddd;
 }
 
+.tipamenu h3 {
+    display: inline-block;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    color: white;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
     }
     
     nav ul {
-        gap: 0.5rem;
+        gap: 1rem;
     }
     
     nav a {
-        padding: 0.4rem 0.8rem;
         font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
     }
     
     .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
         padding: 1rem;
     }
     
-    .product h3 {
-        font-size: 1.1rem;
-    }
-    
-    .product p {
-        font-size: 1rem;
-    }
-    
-    .order-btn {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-    }
-    
-    .menu-filters {
-        gap: 5px;
-    }
-    
-    .filter-btn {
-        padding: 8px 15px;
-        font-size: 0.9rem;
+    h2 {
+        font-size: 2rem;
     }
     
     .cart-container {
         grid-template-columns: 1fr;
     }
     
-    .modal-content {
-        width: 95%;
-        padding: 1rem;
+    .loyalty-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .bonus-card {
+        grid-column: span 1;
+    }
+    
+    .levels-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .day-special {
+        flex-direction: column;
+        text-align: center;
     }
 }
 
@@ -775,13 +1151,5 @@ footer p {
     .filter-btn {
         width: 80%;
         margin-bottom: 5px;
-    }
-    
-    .scroll-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
     }
 }
